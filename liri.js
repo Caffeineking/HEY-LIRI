@@ -61,10 +61,8 @@ function emptyMovieSearch() {
   var queryUrl = "http://www.omdbapi.com/?t=mr.nobody&y=&plot=short&apikey=trilogy";
   console.log(queryUrl);
   request(queryUrl, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      
+    if (!error && response.statusCode === 200) {      
       var body_body = JSON.parse(body); // I have to convert the obect into parsed and store into a var in able to read it     
-
       console.log("Released in: " + body_body.Year);
       console.log("IMDB rating: " + body_body.imdbRating);
       console.log("Rotten Tomato Ratings: " + body_body.Ratings[1].Value);
@@ -75,7 +73,7 @@ function emptyMovieSearch() {
     }
   })
 };
-
+//spotify api
 function spotifySearch() { // search function for spotify
   console.log('spotify is loaded');
   spotify.search({
@@ -92,15 +90,14 @@ function spotifySearch() { // search function for spotify
     console.log(searchResult[0].album.name); // album name
   })
 };
-
+//concert api
 function concertSearch() {
   var artist = b;
   var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   request(queryURL, function (error, result, body) {
     if (error) console.log(error);
     var body_body = JSON.parse(body)[0];
-    console.log("Venue name: " + body_body.venue.name);
-    // console.log("Venue name " + result.venue.name);
+    console.log("Venue name: " + body_body.venue.name);  
     console.log("Location: " + body_body.venue.city);
     console.log("Event Date: " + moment(result.datetime).format("MM/DD/YYYY"));
   });
